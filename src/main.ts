@@ -18,11 +18,6 @@ async function start() {
     const document = SwaggerModule.createDocument(app, config)
     SwaggerModule.setup('/api/docs', app, document)
 
-    // Получаем экземпляр JwtService из контейнера
-    const jwtService = app.get(JwtService);
-    // Создаем экземпляр guard с зависимостью
-    app.useGlobalGuards(new JwtAuthGuard(jwtService));
-
     await app.listen(PORT, () => {
         console.log(`Server starte on port ${PORT}`)
     })
